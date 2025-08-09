@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Veyra — L’essence du fruit, en un stick</title>
+<meta name="description" content="Poudre de fruit en stick — 100% naturel, sans sucre ajouté. Un stick à diluer dans 400 ml d’eau pour un jus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---------- DESIGN SYSTEM ---------- */
+  :root{
+    --bg:linear-gradient(135deg,#f5fbff 0%,#eef7ff 100%);
+    --ink:#10121a;
+    --muted:#63666f;
+    --card:rgba(255,255,255,0.92);
+    --shadow:0 10px 30px rgba(0,0,0,.07);
+    --radius:22px;
+    --grad:linear-gradient(90deg,#42a5f5 0%,#7dd3fc 100%);
+    --accent:#2196f3;
+    --btn-glow:0 0 18px 0 rgba(164,69,255,.18),0 2px 16px 0 rgba(255,94,98,.12);
+    --section-grad:linear-gradient(120deg,#f7fbff 0%,#eef7ff 100%);
+    --section-alt:linear-gradient(120deg,#edf6ff 0%,#e8f4ff 100%);
+    --lifestyle-bg:linear-gradient(120deg,#eaf5ff 0%,#f5fbff 100%);
+  }
+  *,*:before,*:after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    transition:background 1.2s cubic-bezier(.16,.8,.24,1);
+  }
+  img{max-width:100%;height:auto;display:block}
+  .container{max-width:1200px;margin-inline:auto;padding:0 24px}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;padding:16px 28px;
+    border-radius:999px;
+    background:var(--grad);color:#fff;text-decoration:none;
+    font-weight:800;font-size:1.1rem;box-shadow:var(--btn-glow),var(--shadow);
+    transition:transform .18s cubic-bezier(.23,1.1,.32,1), box-shadow .22s, filter .14s;
+    position:relative; letter-spacing:.1px;
+  }
+  .btn:hover{
+    transform:translateY(-2px) scale(1.03);
+    filter:saturate(1.2) brightness(1.04);
+    box-shadow:0 0 0 0 rgba(0,0,0,0),0 0 30px 8px rgba(255,94,98,.17),0 2px 18px 0 rgba(164,69,255,.13);
+  }
+  .btn--ghost{
+    background:rgba(250,250,255,0.82);color:#111;padding:13px 22px;
+    font-weight:700;border:1.3px solid #e5e8f0;
+    transition:background .18s;
+  }
+  .btn--ghost:hover{background:#fff}
+  .pill{border-radius:999px;padding:8px 14px;background:#f3f4f6}
+  .mode-badge{background:#eef6ff;color:#0e4f8f}
+  .h1{
+    font-family:'Poppins','Manrope',system-ui,sans-serif;
+    font-weight:800;
+    font-size:clamp(2.6rem,6vw,64px);
+    line-height:1.04;
+    letter-spacing:.1px;
+    margin:0;
+    text-shadow:0 2px 16px rgba(164,69,255,.07);
+    transition:color .5s cubic-bezier(.23,1.1,.32,1);
+  }
+  .h2{
+    font-family:'Poppins','Manrope',system-ui,sans-serif;
+    font-weight:900;
+    font-size:clamp(1.7rem,4vw,44px);
+    line-height:1.08;
+    letter-spacing:.1px;
+    margin:0 0 16px;
+    text-shadow:0 2px 12px rgba(255,94,98,.05);
+    transition:color .5s cubic-bezier(.23,1.1,.32,1);
+  }
+  .sub{color:var(--muted);font-size:18px;font-weight:500;letter-spacing:.01em}
+  .grad-text{color:#2196f3}
+
+  /* ---------- PREMIUM TWEAKS & ANIM ---------- */
+  .glass{backdrop-filter:saturate(1.3) blur(6px)}
+  .btn{box-shadow:0 12px 26px rgba(10,132,255,.18)}
+  .btn.btn--ghost{background:#f6f7f9}
+  .hero{
+    padding:88px 0 40px;
+    background:radial-gradient(ellipse at 60% 0%, #ffe7f0 0%, #e0f9ff 80%, #fff 100%);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero__copy{padding-right:10px}
+  .hero__media{min-height:640px}
+  .card-float{transition:transform .6s cubic-bezier(.2,.8,.2,1), opacity .4s ease}
+  .float-1{animation:float1 7s ease-in-out infinite}
+  .float-2{animation:float2 8.5s ease-in-out infinite}
+  .float-3{animation:float3 9.5s ease-in-out infinite}
+  @keyframes float1{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-10px)}}
+  @keyframes float2{0%,100%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(0,-8px) rotate(-1deg)}}
+  @keyframes float3{0%,100%{transform:translate(0,0) rotate(4deg)}50%{transform:translate(0,-12px) rotate(6deg)}}
+  /* Hide black backgrounds by blending on white */
+  .blend-screen{mix-blend-mode:screen}
+  /* nicer cards */
+  .card{border:1px solid #eef1f4}
+  .step{border:1px solid #eef1f4}
+  .t{border:1px solid #eef1f4}
+
+  /* ---------- HEADER ---------- */
+  .header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.2) blur(5px);
+          background:rgba(255,255,255,.72); border-bottom:1px solid #eee}
+  .header__in{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}
+  .brand img{width:40px;height:40px;border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+  nav a{color:#15171c;text-decoration:none;margin-left:18px;font-weight:600}
+  nav a:hover{color:#0a84ff}
+  nav .buy{margin-left:22px}
+
+  /* ---------- OFFRES (eau aromatisée / jus) ---------- */
+  .offers{background:var(--section-grad)}
+  .switcher{display:flex;gap:10px;align-items:center;margin-top:16px}
+  .chip{border:1.5px solid #d9e6ff;background:#f6fbff;color:#0e4f8f;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer;transition:.18s}
+  .chip.active{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 8px 22px rgba(33,150,243,.18)}
+  /* Big switcher for Pack */
+  .switcher-lg{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:10px 0 8px 0}
+  .chip-lg{border:2px solid #b9d6ff;background:#eaf4ff;color:#0a4ea6;border-radius:14px;padding:14px 18px;font-weight:900;font-size:1.05rem;cursor:pointer;transition:.18s}
+  .chip-lg.active{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 10px 28px rgba(33,150,243,.22)}
+  .offer-panel{transition:opacity .25s ease, transform .25s ease}
+  .offer-panel[hidden]{display:block;opacity:0;transform:translateY(8px);height:0;overflow:hidden}
+  .offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:22px}
+  .offer{background:var(--card);border:1px solid #eef1f4;border-radius:16px;box-shadow:var(--shadow);padding:22px}
+  .offer h3{margin:0 0 8px;font:800 22px/1.2 'Poppins','Manrope',sans-serif}
+  .meta{color:var(--muted);font-size:1rem}
+  .offer ul{margin:12px 0 0 18px}
+  .offer li{margin:6px 0}
+
+  /* ---------- COMPARATIFS ---------- */
+  .comparatifs{background:var(--section-alt)}
+  .cmp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:18px}
+  .cmp{background:var(--card);border:1px solid #eef1f4;border-radius:16px;box-shadow:var(--shadow);padding:22px}
+  .cmp h3{margin:0 0 8px;font:800 22px/1.2 'Poppins','Manrope',sans-serif}
+  .cmp table{width:100%;border-collapse:separate;border-spacing:0 10px;margin-top:8px}
+  .cmp tr{background:#fff}
+  .cmp td{padding:12px 14px;border:1px solid #eef1f4}
+  .cmp tr td:first-child{font-weight:700;border-top-left-radius:10px;border-bottom-left-radius:10px}
+  .cmp tr td:last-child{border-top-right-radius:10px;border-bottom-right-radius:10px}
+  .warn{color:#8a3d00;background:#fff6e5;border:1px solid #ffdc9c;padding:10px 12px;border-radius:10px;font-size:.95rem;margin-top:10px}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:64px 0 40px}
+  .hero__in{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:56px}
+  .hero__media{
+    position:relative;min-height:740px;display:flex;align-items:center;justify-content:center;
+    perspective:900px;
+    z-index:1;
+    animation:fadeInHero 1s cubic-bezier(.23,1.1,.32,1);
+  }
+  @keyframes fadeInHero{
+    from{opacity:0;transform:translateY(28px);}
+    to{opacity:1;transform:none;}
+  }
+  .card-float{
+    position:absolute;inset:auto;
+    filter:drop-shadow(0 18px 44px rgba(0,0,0,.13));
+    transition:transform .7s cubic-bezier(.23,1.1,.32,1), box-shadow .4s;
+    will-change:transform;
+  }
+  .hero-stick-frame{
+    background:#fff;
+    padding:16px;
+    border-radius:24px;
+    box-shadow:0 16px 36px rgba(0,0,0,.12);
+    display:inline-block;
+    position:absolute;
+    left:50%; top:20px; transform:translateX(-50%);
+    z-index:2;
+  }
+  .hero-stick-frame img{display:block;max-width:420px;border-radius:16px}
+  /* .hero-water{
+    width:260px; left:-120px; bottom:28px; transform:rotate(-6deg) skewY(5deg);
+    z-index:1;
+    animation:float2 8.5s ease-in-out infinite;
+  }
+  .hero-berries{
+    width:220px; right:-22px; bottom:28px; transform:rotate(9deg) skewY(-7deg);
+    z-index:1;
+    animation:float3 9.5s ease-in-out infinite;
+  } */
+  .halo{
+    position:absolute;inset:auto; left:50%; bottom:-8px; transform:translateX(-50%);
+    width:85%; height:60px;
+    background:radial-gradient(ellipse at center, rgba(255,94,98,.15) 0%, rgba(0,0,0,.12) 40%, transparent 90%);
+    filter:blur(14px); opacity:.38;
+    z-index:0;
+  }
+  .hero__cta{
+    display:flex;gap:14px;align-items:center;margin-top:32px;
+    animation:fadeInUp .9s .18s cubic-bezier(.23,1.1,.32,1) both;
+  }
+  @keyframes fadeInUp{
+    from{opacity:0;transform:translateY(26px);}
+    to{opacity:1;transform:none;}
+  }
+  .trust{
+    display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;
+    animation:fadeInUp .9s .28s cubic-bezier(.23,1.1,.32,1) both;
+  }
+  .trust .pill{font-weight:700;font-size:1rem;box-shadow:0 1px 8px rgba(164,69,255,.06);}
+
+  /* ---------- AVANTAGES ---------- */
+  .section{
+    padding:76px 0;
+    background:var(--section-grad);
+    position:relative;
+    overflow:hidden;
+  }
+  .section:nth-of-type(even){
+    background:var(--section-alt);
+  }
+  .grid-3{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    margin-top:32px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:32px 26px 30px 26px;
+    min-height:160px;
+    transition:box-shadow .18s, transform .18s;
+    animation:fadeInCard .7s cubic-bezier(.23,1.1,.32,1);
+  }
+  .card:hover{
+    box-shadow:0 6px 44px 0 rgba(164,69,255,.09),0 2px 14px 0 rgba(255,94,98,.07);
+    transform:translateY(-2px) scale(1.01);
+  }
+  @keyframes fadeInCard{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:none;}
+  }
+  .card h3{
+    font:800 25px/1.19 'Playfair Display',Georgia,serif;
+    margin:0 0 10px;
+    color:var(--ink);
+    letter-spacing:.01em;
+    text-shadow:0 1px 8px rgba(255,94,98,.03);
+  }
+  .card p{color:var(--muted);margin:0;font-size:1.08rem;line-height:1.44}
+
+  /* ---------- STEPS ---------- */
+  .steps{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:34px;
+  }
+  .step{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 16px 22px 16px;
+    text-align:center;
+    transition:box-shadow .18s, transform .18s;
+    animation:fadeInCard .8s cubic-bezier(.23,1.1,.32,1);
+  }
+  .step img{margin:18px auto 14px auto; width:140px; border-radius:12px}
+  .num{
+    width:38px;height:38px;margin:0 auto 12px;
+    border-radius:50%;display:grid;place-items:center;
+    background:var(--grad);color:#fff;font-weight:800;font-size:1.12rem;
+    box-shadow:0 2px 12px rgba(255,94,98,.09);
+  }
+
+  /* ---------- PRODUCT BLOCK ---------- */
+  .product{
+    display:grid;grid-template-columns:520px 1fr;gap:54px;align-items:center;
+    background:transparent;
+  }
+  .product .frame{
+    background:linear-gradient(120deg,#f8fafc 0%,#f7f0ff 100%);
+    border-radius:32px;box-shadow:0 8px 40px 0 rgba(164,69,255,.07),var(--shadow);
+    padding:36px;display:grid;place-items:center;
+    animation:fadeInCard .8s cubic-bezier(.23,1.1,.32,1);
+  }
+  .product .frame img{max-width:420px; border-radius:22px; box-shadow:0 1px 24px 0 rgba(255,94,98,.06); object-fit:contain;}
+  .product .frame{min-height:420px}
+  .pack-content{min-height:220px}
+  .price{
+    font:800 32px/1.06 "Playfair Display", Georgia, serif;
+    margin:18px 0 28px;
+    color:var(--accent);
+    letter-spacing:.01em;
+    text-shadow:0 1px 12px rgba(164,69,255,.04);
+  }
+  .bullets{color:#2e3138;margin:0 0 18px;padding-left:22px;font-size:1.13rem}
+  .bullets li{margin:10px 0}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .t-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    margin-top:36px;
+  }
+  .t{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:28px 22px 24px 22px;
+    font-style:italic;color:#2e3138;
+    font-size:1.12rem;
+    animation:fadeInCard .7s cubic-bezier(.23,1.1,.32,1);
+    transition:box-shadow .18s, transform .18s;
+  }
+  .t:hover{
+    box-shadow:0 6px 44px 0 rgba(164,69,255,.09),0 2px 14px 0 rgba(255,94,98,.07);
+    transform:translateY(-2px) scale(1.01);
+  }
+
+  /* ---------- REVEAL ANIM ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.23,1.1,.32,1), transform .7s cubic-bezier(.23,1.1,.32,1);}
+  .reveal.in{opacity:1; transform:none;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px){
+    .hero__in{grid-template-columns:1fr}
+    .hero__media{order:-1; min-height:520px}
+    .product{grid-template-columns:1fr}
+    nav{display:none}
+    .grid-3,.t-grid,.steps{grid-template-columns:1fr 1fr;}
+    .hero-stick{width:310px;}
+    .hero-water{width:170px;}
+    .hero-berries{width:150px;}
+  }
+  @media (max-width: 800px){
+    .grid-3,.t-grid,.steps{grid-template-columns:1fr;}
+    .hero__media{min-height:320px;}
+    .hero-stick{width:220px;}
+    .hero-water{width:120px;}
+    .hero-berries{width:110px;}
+    .product .frame img{max-width:260px;}
+  }
+  @media (max-width: 640px){
+    .h1{font-size:32px}
+    .h2{font-size:22px}
+    .hero-stick{width:170px;}
+    .hero-water{width:80px;}
+    .hero-berries{width:80px;}
+    .product .frame img{max-width:160px;}
+    .section{padding:48px 0;}
+  }
+
+  /* --- Wavy Section Separators --- */
+  .section:not(:last-of-type)::after{
+    content:'';
+    display:block;
+    position:absolute;
+    left:0;right:0;bottom:-1px;height:38px;
+    background: url('data:image/svg+xml;utf8,<svg width="100%" height="40" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0C240 40 480 40 720 0C960 -40 1200 -40 1440 0V40H0V0Z" fill="%23f7f0ff"/></svg>') no-repeat center bottom/cover;
+    z-index:5;
+    opacity:.7;
+    pointer-events:none;
+  }
+</style>
+</head>
+<body>
+
+  <div style="position:fixed;top:0;left:0;right:0;z-index:999;background:#fff8c4;color:#111;text-align:center;padding:10px 0;font-weight:bold;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,.04);">
+    Pré‑lancement – Site de présentation
+  </div>
+
+  <!-- Header -->
+<header class="header" style="top:44px;">
+  <div class="container header__in">
+    <a class="brand" href="#">
+      <img src="logo.png" alt="Veyra logo">
+      <span>Veyra</span>
+    </a>
+    <nav>
+      <a href="#how">Comment ça marche</a>
+      <a href="#avantages">Avantages</a>
+      <a href="#pack">Pack</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn buy" href="#acheter">Commander</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__in">
+      <div class="hero__copy">
+        <h1 class="h1 reveal" style="transition-delay:.08s;">L’objectif : des jus de fruits <span class="grad-text">bons pour la santé</span>, partout.</h1>
+        <p class="sub reveal" style="margin-top:22px;transition-delay:.16s;">Prépare une boisson fruitée saine où que tu sois : <strong>poudre de fruit lyophilisée</strong>, sans sucre ajouté. Verse 1 stick dans <strong>400 ml d’eau</strong>, secoue <strong>5 secondes</strong>, c’est prêt.</p>
+        <div class="hero__cta reveal" style="transition-delay:.24s;">
+          <a class="btn" href="#acheter">Commander des sticks</a>
+          <a class="btn btn--ghost" href="#how">Découvrir</a>
+        </div>
+        <div class="trust reveal" style="transition-delay:.34s;">
+          <span class="pill">Sans sucre</span>
+          <span class="pill">Clean label</span>
+          <span class="pill">Goût intense</span>
+        </div>
+      </div>
+      <div class="hero__media">
+        <div class="hero-stick-frame reveal" style="transition-delay:.18s;">
+          <img src="stick.png" alt="Stick Veyra">
+        </div>
+        <div class="halo"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVANTAGES -->
+  <section id="avantages" class="section">
+    <div class="container">
+      <h2 class="h2 reveal">Pourquoi <span class="grad-text">Veyra</span> ?</h2>
+      <p class="sub reveal" style="margin-bottom:18px">Le plaisir du fruit sans compromis — simple, net.</p>
+      <div class="grid-3">
+        <div class="card reveal"><h3>100% naturel</h3><p>Sans sucre ajouté. Goût fruité et liste d’ingrédients courte.</p></div>
+        <div class="card reveal"><h3>Ultra pratique</h3><p>Un stick, de l’eau, 5 secondes. À emporter partout, à tout moment.</p></div>
+        <div class="card reveal"><h3>Ingrédients courts</h3><p>100% naturel, sans sucre ajouté, sans colorant ni conservateur.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section" style="padding-top:28px">
+    <div class="container">
+      <h2 class="h2 reveal">Comment ça marche</h2>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="num">1</div>
+          <img src="verre-eau.png" alt="Eau">
+          <div><strong>Remplis 400 ml d’eau</strong><br><span class="sub">Plate ou pétillante.</span></div>
+        </div>
+        <div class="step reveal">
+          <div class="num">2</div>
+          <img src="stick.png" alt="Stick">
+          <div><strong>Ajoute un stick Veyra</strong><br><span class="sub">Verse et secoue 5 secondes.</span></div>
+        </div>
+        <div class="step reveal">
+          <div class="num">3</div>
+          <img id="drink-photo" src="verre-fraise.png" data-src-jus="verre-fraise.png" data-src-eau="verre-eau-rose.png" alt="Boisson" style="width:140px; border-radius:12px; margin:18px auto 14px auto; display:block;">
+          <div><strong>Déguste</strong><br><span class="sub">Goût puissant.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERS: Single product -->
+  <section class="section offers" id="offres">
+    <div class="container">
+      <h2 class="h2 reveal">Notre jus en stick</h2>
+      <p class="sub reveal">Simple : 1 stick → 400 ml d’eau. Goût puissant, 100% naturel.</p>
+      <div class="offer reveal" style="margin-top:18px">
+        <h3>Fraise</h3>
+        <div class="meta">Stick — à diluer dans 400 ml</div>
+        <ul>
+          <li>Dosage : <strong>1 stick</strong> pour <strong>400 ml</strong>.</li>
+          <li>Prix : <strong>0,75 € / stick</strong>.</li>
+          <li>Pack : <strong>20 sticks = 15 €</strong>.</li>
+        </ul>
+        <div style="margin-top:14px">
+          <a class="btn" href="#pack">Commander</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section id="pack" class="section">
+    <div class="container product">
+      <div class="frame reveal">
+        <img id="product-photo" src="verre-fraise.png" data-src-jus="verre-fraise.png" data-src-eau="verre-eau-rose.png" alt="Visuel boisson"/>
+      </div>
+      <div class="reveal">
+        <div class="pack-content">
+          <h2 class="h2">Pack Découverte — Fraise</h2>
+          <ul class="bullets">
+            <li><strong>20 sticks</strong> fraise</li>
+            <li>100% naturel, sans sucre ajouté, sans colorant ni conservateur</li>
+            <li>Ingrédients : poudre de fruit, acide citrique, arôme naturel de vanille</li>
+            <li>Dosage : 1 stick pour 400 ml d’eau</li>
+          </ul>
+          <div style="margin-top:20px">
+            <h3 style="margin-bottom:8px">Valeurs nutritionnelles moyennes (pour 100 g)</h3>
+            <ul style="list-style:none; padding-left:0; margin:0; font-size:1.05rem; color:#2e3138">
+              <li>Calories : 1448 kJ / 343 kcal</li>
+              <li>Lipides : 1.1 g</li>
+              <li>dont acides gras saturés : 0.2 g</li>
+              <li>Glucides : 72 g</li>
+              <li>dont sucres : 64 g</li>
+              <li>Fibres alimentaires : 14 g</li>
+              <li>Protéines : 4.4 g</li>
+              <li>Sel : 0.08 g</li>
+            </ul>
+          </div>
+          <div class="price">15 €</div>
+          <a id="acheter" class="btn" href="#">Acheter — 20 sticks</a>
+          <p class="sub" style="margin-top:10px">Pré‑commande — livraison 5–7 jours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" style="padding-top:30px">
+    <div class="container">
+      <h2 class="h2 reveal">Ils en parlent</h2>
+      <div class="t-grid">
+        <div class="t reveal">“Enfin une boisson fruitée clean qui a du goût. Le stick fraise est dingue.” — Camille, Paris</div>
+        <div class="t reveal">“Après la salle : 0 sucre, rapide, ça change des sodas.” — Malik, Lyon</div>
+        <div class="t reveal">“Design canon, goût naturel. Je recommande le pack découverte.” — Zoé, Bordeaux</div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- FOOTER -->
+<footer class="section" style="padding:34px 0 28px; border-top:1px solid #eee">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+    <div class="sub">© 2025 Veyra — Contact : <a href="mailto:contact@veyra.com" style="color:#111;text-decoration:underline">contact@veyra.com</a></div>
+    <div class="sub">Instagram : @veyra</div>
+  </div>
+</footer>
+
+<script>
+  // Header: solid on scroll
+  const header = document.querySelector('.header');
+  const onScroll = () => {
+    const y = window.scrollY || 0;
+    header.style.background = y > 6 ? 'rgba(255,255,255,.96)' : 'rgba(255,255,255,.72)';
+    header.style.boxShadow = y > 6 ? '0 10px 30px rgba(0,0,0,.06)' : 'none';
+  };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Reveal on scroll with fade/slide
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        // Animate text children
+        if(e.target.tagName.match(/H[1-6]|P|DIV/)){
+          Array.from(e.target.children).forEach((c,i)=>{
+            c.style.transitionDelay = `${0.13 + i*0.08}s`;
+            c.classList.add('in');
+          });
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.13});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Smooth FAQ open/close
+  document.querySelectorAll('.qa').forEach(q => {
+    const summary = q.querySelector('summary');
+    const answer = q.querySelector('.answer');
+    if(!summary || !answer) return;
+    answer.style.maxHeight = '0px';
+    answer.style.overflow = 'hidden';
+    answer.style.transition = 'max-height .25s ease, opacity .25s ease';
+    answer.style.opacity = 0;
+    q.addEventListener('toggle', () => {
+      if(q.open){
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.style.opacity = 1;
+      } else {
+        answer.style.maxHeight = '0px';
+        answer.style.opacity = 0;
+      }
+    });
+  });
+
+
+</script>
+<style>
+/* ---- Animation for Pack section mode change (subtle) ---- */
+.pack-content.mode-change,
+.pack-content.mode-change .bullets,
+.pack-content.mode-change .price,
+.pack-content.mode-change .mode-badge,
+.pack-content.mode-change h2,
+.pack-content.mode-change #acheter{
+  animation: packModeChange .22s cubic-bezier(.32,.72,.36,1);
+}
+@keyframes packModeChange{
+  0%{opacity:.94; transform:translateY(-1px)}
+  100%{opacity:1; transform:none}
+}
+</style>
+<script>
+  // Subtle parallax on hero media
+  const hero = document.querySelector('.hero__media');
+  const stick = document.querySelector('.hero-stick');
+  const water = document.querySelector('.hero-water');
+  const berries = document.querySelector('.hero-berries');
+  if(hero && stick && water && berries){
+    const parallax = (e)=>{
+      const r = hero.getBoundingClientRect();
+      const cx = (e.clientX - (r.left + r.width/2)) / r.width;
+      const cy = (e.clientY - (r.top + r.height/2)) / r.height;
+      stick.style.transform = `translateX(-50%) rotate(-11deg) skewY(-6deg) translate(${-cx*16}px, ${-cy*16}px)`;
+      water.style.transform = `rotate(-6deg) skewY(5deg) translate(${cx*18}px, ${-cy*12}px)`;
+      berries.style.transform = `rotate(9deg) skewY(-7deg) translate(${cx*-18}px, ${-cy*16}px)`;
+    };
+    hero.addEventListener('mousemove', parallax);
+    hero.addEventListener('mouseleave', ()=>{
+      stick.style.transform = 'translateX(-50%) rotate(-11deg) skewY(-6deg)';
+      water.style.transform = 'rotate(-6deg) skewY(5deg)';
+      berries.style.transform = 'rotate(9deg) skewY(-7deg)';
+    });
+  }
+</script>
+</body>
+</html>
