@@ -331,6 +331,8 @@
     .hero-water{width:120px;}
     .hero-berries{width:110px;}
     .product .frame img{max-width:260px;}
+    .hero__cta{gap:10px}
+    .btn{padding:14px 22px}
   }
   @media (max-width: 640px){
     .h1{font-size:32px}
@@ -354,6 +356,22 @@
     pointer-events:none;
   }
 </style>
+  @media (max-width: 480px){
+    .container{padding:0 16px}
+    .hero{padding:56px 0 28px}
+    .hero__media{min-height:280px}
+    .hero__cta{flex-direction:column;align-items:stretch}
+    .btn{width:100%;justify-content:center}
+    .grid-3,.t-grid,.steps{grid-template-columns:1fr}
+    .offer{padding:18px}
+    .product{gap:28px}
+    .product .frame{padding:22px}
+    .price{font-size:28px;margin:14px 0 20px}
+    .bullets{font-size:1rem}
+    .card p{font-size:1rem}
+    footer .container{flex-direction:column;align-items:flex-start;gap:8px}
+  }
+</style>
 </head>
 <body>
 
@@ -362,7 +380,7 @@
   </div>
 
   <!-- Header -->
-<header class="header" style="top:44px;">
+<header class="header" style="top:48px;">
   <div class="container header__in">
     <a class="brand" href="#">
       <img src="logo.png" alt="Veyra logo">
@@ -425,17 +443,17 @@
       <div class="steps">
         <div class="step reveal">
           <div class="num">1</div>
-          <img src="verre-eau.png" alt="Eau">
+          <img src="verre-eau.png" alt="Eau" loading="lazy">
           <div><strong>Remplis 400 ml d’eau</strong><br><span class="sub">Plate ou pétillante.</span></div>
         </div>
         <div class="step reveal">
           <div class="num">2</div>
-          <img src="stick.png" alt="Stick">
+          <img src="stick.png" alt="Stick" loading="lazy">
           <div><strong>Ajoute un stick Veyra</strong><br><span class="sub">Verse et secoue 5 secondes.</span></div>
         </div>
         <div class="step reveal">
           <div class="num">3</div>
-          <img id="drink-photo" src="verre-fraise.png" data-src-jus="verre-fraise.png" data-src-eau="verre-eau-rose.png" alt="Boisson" style="width:140px; border-radius:12px; margin:18px auto 14px auto; display:block;">
+          <img id="drink-photo" src="verre-fraise.png" data-src-jus="verre-fraise.png" data-src-eau="verre-eau-rose.png" loading="lazy" alt="Boisson" style="width:140px; border-radius:12px; margin:18px auto 14px auto; display:block;">
           <div><strong>Déguste</strong><br><span class="sub">Goût puissant.</span></div>
         </div>
       </div>
@@ -466,7 +484,7 @@
   <section id="pack" class="section">
     <div class="container product">
       <div class="frame reveal">
-        <img id="product-photo" src="verre-fraise.png" data-src-jus="verre-fraise.png" data-src-eau="verre-eau-rose.png" alt="Visuel boisson"/>
+        <img id="product-photo" src="verre-fraise.png" loading="lazy" data-src-jus="verre-fraise.png" data-src-eau="verre-eau-rose.png" alt="Visuel boisson"/>
       </div>
       <div class="reveal">
         <div class="pack-content">
