@@ -331,6 +331,7 @@
     .hero-water{width:120px;}
     .hero-berries{width:110px;}
     .product .frame img{max-width:260px;}
+    .hero-stick-frame img{max-width:240px}
     .hero__cta{gap:10px}
     .btn{padding:14px 22px}
   }
@@ -356,10 +357,21 @@
     pointer-events:none;
   }
 </style>
+<style>
   @media (max-width: 480px){
     .container{padding:0 16px}
     .hero{padding:56px 0 28px}
-    .hero__media{min-height:280px}
+    .hero__in{gap:16px}
+    .hero__media{
+      min-height:360px;
+      display:grid; place-items:center; width:100%; text-align:center;
+    }
+    .hero-stick-frame{
+      position:relative; inset:auto; transform:none;
+      margin:0 auto; display:block; width:auto; text-align:center;
+    }
+    .hero-stick-frame img{max-width:220px; margin:0 auto; display:block}
+    .hero__media > *{margin-inline:auto !important}
     .hero__cta{flex-direction:column;align-items:stretch}
     .btn{width:100%;justify-content:center}
     .grid-3,.t-grid,.steps{grid-template-columns:1fr}
@@ -370,6 +382,8 @@
     .bullets{font-size:1rem}
     .card p{font-size:1rem}
     footer .container{flex-direction:column;align-items:flex-start;gap:8px}
+    .step img{width:120px}
+    .hero__in{grid-template-columns:1fr; justify-items:center}
   }
 </style>
 </head>
